@@ -1,20 +1,49 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
+import "../App.css";
 
 const NavBar = () => {
   const links = (
     <>
-      <li>
-        <NavLink to={"/"}>Home</NavLink>
+      <li className="hover:bg-[#A8F1FF]">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "border-b-2 border-b-[#a8f1ff]" : null
+          }
+          to={"/"}
+        >
+          Home
+        </NavLink>
       </li>
-      <li>
-        <NavLink to={"/all-recipes"}>All Recipes</NavLink>
+      <li className="hover:bg-[#A8F1FF]">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "border-b-2 border-b-[#a8f1ff]" : null
+          }
+          to={"/all-recipes"}
+        >
+          All Recipes
+        </NavLink>
       </li>
-      <li>
-        <NavLink to={"/add-recipes"}>Add Recipes</NavLink>
+      <li className="hover:bg-[#A8F1FF]">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "border-b-2 border-b-[#a8f1ff]" : null
+          }
+          to={"/add-recipes"}
+        >
+          Add Recipes
+        </NavLink>
       </li>
-      <li>
-        <NavLink to={"/my-recipes"}>My Recipes</NavLink>
+      <li className="hover:bg-[#A8F1FF]">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "border-b-2 border-b-[#a8f1ff]" : null
+          }
+          to={"/my-recipes"}
+        >
+          My Recipes
+        </NavLink>
       </li>
     </>
   );
@@ -52,8 +81,13 @@ const NavBar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="navbar-end gap-2">
+          <Link to={"/login"} className="btn bg-[#A8F1FF] text-[#000000]">
+            Login
+          </Link>
+          <Link to={"/signup"} className="btn bg-[#A8F1FF] text-[#000000]">
+            Sign Up
+          </Link>
         </div>
       </div>
     </div>
