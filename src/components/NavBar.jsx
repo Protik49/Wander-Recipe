@@ -23,7 +23,7 @@ const NavBar = () => {
       <li className="hover:bg-[#A8F1FF]">
         <NavLink
           className={({ isActive }) =>
-            isActive ? "border-b-2 border-b-[#a8f1ff]" : null
+            isActive ? "border-b-2 border-b-[#a8f1ff] font-mono" : "font-mono"
           }
           to={"/"}
         >
@@ -33,7 +33,7 @@ const NavBar = () => {
       <li className="hover:bg-[#A8F1FF]">
         <NavLink
           className={({ isActive }) =>
-            isActive ? "border-b-2 border-b-[#a8f1ff]" : null
+            isActive ? "border-b-2 border-b-[#a8f1ff] font-mono" : "font-mono"
           }
           to={"/all-recipes"}
         >
@@ -43,7 +43,7 @@ const NavBar = () => {
       <li className="hover:bg-[#A8F1FF]">
         <NavLink
           className={({ isActive }) =>
-            isActive ? "border-b-2 border-b-[#a8f1ff]" : null
+            isActive ? "border-b-2 border-b-[#a8f1ff] font-mono" : "font-mono"
           }
           to={"/add-recipes"}
         >
@@ -53,7 +53,7 @@ const NavBar = () => {
       <li className="hover:bg-[#A8F1FF]">
         <NavLink
           className={({ isActive }) =>
-            isActive ? "border-b-2 border-b-[#a8f1ff]" : null
+            isActive ? "border-b-2 border-b-[#a8f1ff] font-mono" : "font-mono"
           }
           to={"/my-recipes"}
         >
@@ -142,7 +142,7 @@ const NavBar = () => {
               {links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Wander Recipe</a>
+          <a className="btn btn-ghost text-xl font-mono">Wander Recipe</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>

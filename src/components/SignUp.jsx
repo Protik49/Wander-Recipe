@@ -7,7 +7,20 @@ import { Link, useNavigate } from "react-router";
 const SignUp = () => {
   const { user, setUser, loading } = useContext(myContext);
   const [error, setError] = useState(null);
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+    
+
+    if (!/[A-Z]/.test(password) || !/[a-z]/.test(password)) {
+      setError(
+        "Password must include at least one uppercase and one lowercase letter."
+      );
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
 
   const handleSignupsubmit = (event) => {
     event.preventDefault();
@@ -85,6 +98,11 @@ const SignUp = () => {
               Sign Up
             </button>
           </form>
+          {error && (
+            <p className="text-red-500  text-sm break-words whitespace-normal">
+              {error}
+            </p>
+          )}
         </div>
       </div>
     </div>
