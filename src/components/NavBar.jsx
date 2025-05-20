@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import "../App.css";
+import { myContext } from "../contexts/Authprovider";
+import { handleSignOut } from "../firebase/firebaseFunks";
 
 const NavBar = () => {
+  const { user, setUser, loading } = useContext(myContext);
+
+  const handleLogout = () => {
+    handleSignOut()
+      .then(() => {
+        setUser(null);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  };
+
   const links = (
     <>
       <li className="hover:bg-[#A8F1FF]">
@@ -47,6 +62,57 @@ const NavBar = () => {
       </li>
     </>
   );
+
+  const profile = (
+    <>
+      <div className="dropdown dropdown-end">
+        <div
+          tabIndex={0}
+          role="button"
+          className="btn btn-ghost btn-circle avatar"
+        >
+          <div className="w-10 rounded-full">
+            <img
+              src={user?.photoURL}
+              alt="profile pic"
+              className="w-12 h-12 rounded-full object-cover border-2 border-[#A8F1FF] shadow-2xl"
+            />
+          </div>
+        </div>
+        <ul
+          tabIndex={0}
+          className="menu menu-sm dropdown-content bg-[#A8F1FF] rounded-box z-1 mt-3 w-52 p-2 shadow-2xl space-y-5"
+        >
+          <li className="">
+            <p className="text-[16px] justify-between">
+              Username:
+              <span className="font-semibold">{user?.displayName}</span>
+            </p>
+          </li>
+
+          <li>
+            <button
+              className="btn shadow-2xl bg-[#ffffff] text-[#000000]"
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+    </>
+  );
+
+  const buttons = (
+    <>
+      <Link to={"/login"} className="btn bg-[#A8F1FF] text-[#000000]">
+        Login
+      </Link>
+      <Link to={"/signup"} className="btn bg-[#A8F1FF] text-[#000000]">
+        Sign Up
+      </Link>
+    </>
+  );
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm">
@@ -82,12 +148,13 @@ const NavBar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end gap-2">
-          <Link to={"/login"} className="btn bg-[#A8F1FF] text-[#000000]">
-            Login
-          </Link>
-          <Link to={"/signup"} className="btn bg-[#A8F1FF] text-[#000000]">
-            Sign Up
-          </Link>
+          {loading ? (
+            <span className="loading loading-spinner text-success"></span>
+          ) : user ? (
+            profile
+          ) : (
+            buttons
+          )}
         </div>
       </div>
     </div>

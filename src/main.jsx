@@ -7,6 +7,7 @@ import Home from "./components/Home.jsx";
 import Mainlayout from "./Layout/Mainlayout.jsx";
 import Login from "./components/Login.jsx";
 import SignUp from "./components/SignUp.jsx";
+import PrivateRoot from "./PrivateRoot/PrivateRoot.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,12 +20,30 @@ const router = createBrowserRouter([
       },
       {
         path: "all-recipes",
-        element: <div>Hi</div>,
+        element: (
+          <PrivateRoot>
+            <div>Hi</div>
+          </PrivateRoot>
+        ),
       },
-      { path: "/add-recipes", element: <div>Hello</div> },
-      { path: "/my-recipes", element: <div>Hi</div> },
+      {
+        path: "/add-recipes",
+        element: (
+          <PrivateRoot>
+            <div>Hello</div>
+          </PrivateRoot>
+        ),
+      },
+      {
+        path: "/my-recipes",
+        element: (
+          <PrivateRoot>
+            <div>Hi</div>
+          </PrivateRoot>
+        ),
+      },
       { path: "/login", Component: Login },
-      {path: "/signup", Component: SignUp}
+      { path: "/signup", Component: SignUp },
     ],
   },
 ]);
