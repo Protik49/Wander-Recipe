@@ -1,9 +1,24 @@
-import React from "react";
-import { Link, Links, useLoaderData } from "react-router";
+import React, { useEffect, useState } from "react";
+import { Link} from "react-router";
 import HomeRecipes from "./HomeRecipes";
 
+
 const Home = () => {
-  const recipes = useLoaderData();
+ 
+  const [recipes, setRecipes] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:3000/recipes")
+    .then(res=>res.json())
+      .then(data => {
+        const filteredRecipes = data
+          .sort((a, b) => b.likeCount - a.likeCount)
+          .slice(0, 5);
+        
+        setRecipes(filteredRecipes)
+    })
+  },[])
+
   const filteredRecipes = recipes
     .sort((a, b) => b.likeCount - a.likeCount)
     .slice(0, 5);
@@ -36,7 +51,7 @@ const Home = () => {
         </div>
       </div>
       <div className="grid grid-cols-3 justify-items-center max-md:grid-cols-2 gap-3  my-5">
-        {filteredRecipes.map((recipe, index) => {
+        {filteredRecipes?.map((recipe, index) => {
           return <HomeRecipes key={index} recipe={recipe}></HomeRecipes>;
         })}
       </div>
@@ -46,6 +61,7 @@ const Home = () => {
             All Recipes
           </button>
         </Link>
+        
       </div>
     </div>
   );

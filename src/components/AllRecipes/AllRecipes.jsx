@@ -1,10 +1,18 @@
-import React from 'react';
-import { useLoaderData } from 'react-router';
+import React, { useEffect, useState } from 'react';
+
 
 import HomeRecipes from '../Home/HomeRecipes';
 
 const AllRecipes = () => {
-    const recipes = useLoaderData();
+    
+    const [recipes, setRecipes] = useState([])
+
+    useEffect(() => {
+        fetch("http://localhost:3000/recipes")
+          .then((res) => res.json())
+          .then((data) => setRecipes(data))
+          .catch((error) => console.error(error));
+    },[])
     return (
       <div>
         <div className="grid grid-cols-4 max-md:grid-cols-2 gap-3  my-5">

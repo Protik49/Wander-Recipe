@@ -1,21 +1,59 @@
-import React from "react";
+import React, { useContext } from "react";
+import Swal from "sweetalert2";
+import { myContext } from "../contexts/Authprovider";
 
 const AddRecipe = () => {
-  //   const {
-  //     title,
-  //     image,
-  //     cuisineType,
-  //     preparationTime,
-  //     likeCount,
-  //     categories,
-  //     ingredients,
-  //     instructions,
-  //   } = recipe;
-  const handleSubmit = () => {
-    console.log("hi");
+  const { user } = useContext(myContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const title = formData.get("title");
+    const image = formData.get("image");
+    const cuisineType = formData.get("cuisineType");
+    const preparationTime = parseInt(formData.get("preparationTime"));
+    const instructions = formData.get("instructions");
+
+    const categories = formData.getAll("categories");
+    const ingredients = formData.getAll("ingredients");
+    const likeCount = 0;
+    const userEmail = user?.email;
+
+    const recipe = {
+      title,
+      image,
+      cuisineType,
+      preparationTime,
+      likeCount,
+      categories,
+      ingredients,
+      instructions,
+      userEmail,
+    };
+
+    fetch("http://localhost:3000/recipes", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(recipe),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your recipe has been added! Now give us a treat!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          form.reset();
+        }
+      });
   };
   return (
-    <div className="my-8">
+    <div className="my-8 flex justify-center">
       <div
         className="card bg-base-100 w-full max-w-2xl shrink-0 shadow-2xl border-2 border-[#A8F1FF]"
         data-theme="light"
@@ -34,6 +72,7 @@ const AddRecipe = () => {
               <input
                 type="text"
                 name="title"
+                required
                 className="input w-full"
                 placeholder="Your Recipe Title"
               />
@@ -63,6 +102,7 @@ const AddRecipe = () => {
             <div>
               <label className="label">Preparation Time</label>
               <input
+                required
                 type="number"
                 name="preparationTime"
                 className="input w-full"
@@ -74,6 +114,7 @@ const AddRecipe = () => {
             <div>
               <label className="label">Image</label>
               <input
+                required
                 type="text"
                 name="image"
                 className="input w-full"
@@ -99,6 +140,7 @@ const AddRecipe = () => {
                 ].map((cat, index) => (
                   <label key={index} className="flex items-center gap-2">
                     <input
+                      required
                       type="checkbox"
                       name="categories"
                       value={cat}
@@ -132,6 +174,7 @@ const AddRecipe = () => {
                 ].map((ing, index) => (
                   <label key={index} className="flex items-center gap-2">
                     <input
+                      required
                       type="checkbox"
                       name="ingredients"
                       value={ing}
@@ -147,6 +190,7 @@ const AddRecipe = () => {
             <div className="lg:col-span-2">
               <label className="label shadow-2xl">Instructions</label>
               <textarea
+                required
                 name="instructions"
                 className="textarea w-full"
                 placeholder="How to make the actual recipe?"
