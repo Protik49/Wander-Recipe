@@ -8,8 +8,8 @@ const Footer = () => {
           <img
             className="bg-[#05C852] w-10 h-10 rounded-4xl"
             src="https://static.thenounproject.com/png/2434646-200.png"
-            alt=""
-            srcset=""
+            alt="profile pic"
+            
           />
 
           <p className="font-semibold font-mono text-xl text-[#000000]">

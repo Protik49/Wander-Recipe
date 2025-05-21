@@ -1,7 +1,13 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, Links, useLoaderData } from "react-router";
+import HomeRecipes from "./HomeRecipes";
 
-const Hero = () => {
+const Home = () => {
+  const recipes = useLoaderData();
+  const filteredRecipes = recipes
+    .sort((a, b) => b.likeCount - a.likeCount)
+    .slice(0, 5);
+
   return (
     <div>
       <div className=" overflow-x-auto hero bg-[#ffffff]  text-[#252c2d] min-h-[80vh] border-double border-b-2 mt-3 ">
@@ -29,8 +35,20 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <div className="flex gap-3 flex-wrap justify-center">
+        {filteredRecipes.map((recipe, index) => {
+          return <HomeRecipes key={index} recipe={recipe}></HomeRecipes>;
+        })}
+      </div>
+      <div className="flex justify-center my-5">
+        <Link to={"/all-recipes"}>
+          <button className="btn bg-[#A8F1FF] border-none text-black">
+            All Recipes
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };
 
-export default Hero;
+export default Home;

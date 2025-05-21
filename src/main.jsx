@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import Home from "./components/Home.jsx";
+import Home from "./components/Home/Home.jsx";
 import Mainlayout from "./Layout/Mainlayout.jsx";
 import Login from "./components/Login.jsx";
 import SignUp from "./components/SignUp.jsx";
@@ -17,6 +17,7 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+        loader: ()=>fetch("http://localhost:3000/recipes")
       },
       {
         path: "all-recipes",
