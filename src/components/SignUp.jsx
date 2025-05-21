@@ -7,8 +7,15 @@ import { Link, useNavigate } from "react-router";
 const SignUp = () => {
   const { user, setUser, loading } = useContext(myContext);
   const [error, setError] = useState(null);
-    const navigate = useNavigate();
-    
+  const navigate = useNavigate();
+
+  const handleSignupsubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    const photo = form.photo.value;
+    const name = form.name.value;
 
     if (!/[A-Z]/.test(password) || !/[a-z]/.test(password)) {
       setError(
@@ -21,15 +28,6 @@ const SignUp = () => {
       setError("Password must be at least 6 characters");
       return;
     }
-
-  const handleSignupsubmit = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value; 
-    const password = form.password.value;
-    const photo = form.photo.value;
-    const name = form.name.value;
-    
 
     handleSignUp(email, password)
       .then((userCredential) => {
@@ -51,8 +49,8 @@ const SignUp = () => {
   return (
     <div className="flex items-center justify-center min-h-[90vh]">
       <div
-        className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl"
-        data-theme="dark"
+        className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl border-2 border-[#A8F1FF]"
+        data-theme="light"
       >
         <div className="card-body">
           <h1 className="text-5xl font-bold text-center">Sign Up now!</h1>

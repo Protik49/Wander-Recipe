@@ -8,6 +8,9 @@ import Mainlayout from "./Layout/Mainlayout.jsx";
 import Login from "./components/Login.jsx";
 import SignUp from "./components/SignUp.jsx";
 import PrivateRoot from "./PrivateRoot/PrivateRoot.jsx";
+import AllRecipes from "./components/AllRecipes/AllRecipes.jsx";
+import RecipeDetails from "./components/RecipeDetails.jsx";
+import AddRecipe from "./components/AddRecipe.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,21 +20,32 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: ()=>fetch("http://localhost:3000/recipes")
+        loader: () => fetch("http://localhost:3000/recipes"),
       },
       {
         path: "all-recipes",
         element: (
           <PrivateRoot>
-            <div>Hi</div>
+            <AllRecipes />
           </PrivateRoot>
         ),
+        loader: () => fetch("http://localhost:3000/recipes"),
+      },
+      {
+        path: "/all-recipes/:id",
+        element: (
+          <PrivateRoot>
+            <RecipeDetails />
+          </PrivateRoot>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/all-recipes/${params.id}`),
       },
       {
         path: "/add-recipes",
         element: (
           <PrivateRoot>
-            <div>Hello</div>
+            <AddRecipe />
           </PrivateRoot>
         ),
       },

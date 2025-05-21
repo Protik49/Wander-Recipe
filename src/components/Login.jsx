@@ -49,8 +49,8 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-[90vh]">
       <div
-        className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl"
-        data-theme="dark"
+        className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl border-2 border-[#A8F1FF]"
+        data-theme="light"
       >
         <div className="card-body">
           <h1 className="text-5xl font-bold text-center">Login now!</h1>
