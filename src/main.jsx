@@ -11,7 +11,7 @@ import PrivateRoot from "./PrivateRoot/PrivateRoot.jsx";
 import AllRecipes from "./components/AllRecipes/AllRecipes.jsx";
 import RecipeDetails from "./components/RecipeDetails.jsx";
 import AddRecipe from "./components/AddRecipe.jsx";
-import MyRecipes from "./components/MyRecipes.jsx";
+import MyRecipes from "./components/MyRecipes/MyRecipes.jsx";
 
 const router = createBrowserRouter([
   {

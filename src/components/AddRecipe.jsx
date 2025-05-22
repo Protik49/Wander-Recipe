@@ -44,7 +44,7 @@ const AddRecipe = () => {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Your recipe has been added! Now give us a treat!",
+            title: "Your recipe has been added!",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -140,7 +140,7 @@ const AddRecipe = () => {
                 ].map((cat, index) => (
                   <label key={index} className="flex items-center gap-2">
                     <input
-                      required
+                      
                       type="checkbox"
                       name="categories"
                       value={cat}
@@ -174,7 +174,7 @@ const AddRecipe = () => {
                 ].map((ing, index) => (
                   <label key={index} className="flex items-center gap-2">
                     <input
-                      required
+                      
                       type="checkbox"
                       name="ingredients"
                       value={ing}

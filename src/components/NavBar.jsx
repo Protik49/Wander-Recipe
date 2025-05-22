@@ -149,7 +149,7 @@ const NavBar = () => {
         </div>
         <div className="navbar-end gap-2">
           {loading ? (
-            <span className="loading loading-spinner text-success"></span>
+            <span className="loading loading-spinner bg-[#A8F1FF] text-success"></span>
           ) : user ? (
             profile
           ) : (
