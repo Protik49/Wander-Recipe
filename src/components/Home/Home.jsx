@@ -102,7 +102,7 @@ const Home = () => {
                 "Your Favorite Recipes.",
                 "All in One Place.",
               ]}
-              loop={5}
+              loop={15}
               cursor
               cursorStyle="_"
               typeSpeed={70}
@@ -112,7 +112,7 @@ const Home = () => {
           </h1>
         </div>
 
-        
+
       </div>
     </div>
   );

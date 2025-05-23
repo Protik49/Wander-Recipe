@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router";
 import { AiOutlineLike } from "react-icons/ai";
+import { Typewriter } from "react-simple-typewriter";
 
 const RecipeDetails = () => {
   const recipe = useLoaderData();
@@ -18,9 +19,7 @@ const RecipeDetails = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-6">
-     
       <div className="p-[2px] bg-gradient-to-br from-[#A8F1FF] via-[#63E6BE] to-[#4FC3F7] rounded-xl">
-        
         <div className="bg-white shadow rounded-xl overflow-hidden flex flex-col gap-6 md:flex-row">
           {/* Left Image */}
           <div className="md:w-1/2 w-full">
@@ -34,6 +33,17 @@ const RecipeDetails = () => {
           {/* Right Content */}
           <div className="md:w-1/2 w-full p-4 space-y-4">
             <div>
+              <p className="text-sm  mb-3 drop-shadow-md text-[#05d0f9] ">
+                <Typewriter
+                  words={[`${likeCount} people interested in this recipe`]}
+                  loop={15}
+                  cursor
+                  cursorStyle="_"
+                  typeSpeed={70}
+                  deleteSpeed={50}
+                  delaySpeed={1000}
+                />
+              </p>
               <h1 className="text-2xl font-bold text-gray-800">{title}</h1>
               <p className="text-sm text-gray-500">{cuisineType} Cuisine</p>
             </div>

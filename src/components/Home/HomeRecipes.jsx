@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router";
 import { AiOutlineLike } from "react-icons/ai";
 import { myContext } from "../../contexts/Authprovider";
+import { Tooltip } from "react-tooltip";
 
 const HomeRecipes = ({ recipe }) => {
   const { _id, title, image, cuisineType, instructions, likeCount } = recipe;
@@ -43,9 +44,14 @@ const HomeRecipes = ({ recipe }) => {
           <div className="card-actions mt-3 flex-row gap-6 max-md:flex-col-reverse  max-md:gap-3 items-center justify-between">
             <div>
               <Link to={`/all-recipes/${_id}`}>
-                <button className="btn bg-[#A8F1FF] border-none text-black">
+                <button
+                  data-tooltip-id="my-tooltip"
+                  data-tooltip-content="Explore This Recipe"
+                  className="btn bg-[#A8F1FF] border-none text-black"
+                >
                   Details
                 </button>
+                <Tooltip id="my-tooltip" />
               </Link>
             </div>
             <div

@@ -294,14 +294,13 @@ const MyRecipesItems = ({ recipe, setDeleted }) => {
 
               <div className="lg:col-span-2 flex justify-center">
                 <button
-                  data-tooltip-id="my-tooltip"
-                  data-tooltip-content="Hello world!"
+                 
                   type="submit"
                   className="btn bg-[#A8F1FF] text-black mt-4"
                 >
                   Update Recipe
                 </button>
-                <Tooltip id="my-tooltip" />
+                
               </div>
             </form>
             <div className="modal-action">
