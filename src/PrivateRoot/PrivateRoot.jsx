@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router';
 import { useLocation } from "react-router";
-import React, { use, useContext } from "react";
+import React, { useContext } from "react";
 import { myContext } from "../contexts/Authprovider";
 import Loading from "./Loading";
 

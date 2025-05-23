@@ -1,4 +1,4 @@
-import Tooltip from "daisyui/components/tooltip";
+
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 

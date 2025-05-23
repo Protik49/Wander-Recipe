@@ -3,7 +3,7 @@ import MyRecipesItems from './MyRecipesItems'
 
 import { myContext } from "../../contexts/Authprovider";
 import NoItemsFound from "../NoItemsFound";
-import HomeRecipes from "../Home/HomeRecipes";
+
 import Loading from "../../PrivateRoot/Loading";
 
 const MyRecipes = () => {
