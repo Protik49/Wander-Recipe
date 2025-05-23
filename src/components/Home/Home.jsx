@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Link} from "react-router";
+import { Link } from "react-router";
 import HomeRecipes from "./HomeRecipes";
+import Accordion from "./Accordion";
 
 
 const Home = () => {
- 
-  const [recipes, setRecipes] = useState([])
+  const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/recipes")
-    .then(res=>res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         const filteredRecipes = data
           .sort((a, b) => b.likeCount - a.likeCount)
           .slice(0, 6);
-        
-        setRecipes(filteredRecipes)
-    })
-  },[])
+
+        setRecipes(filteredRecipes);
+      });
+  }, []);
 
   const filteredRecipes = recipes
     .sort((a, b) => b.likeCount - a.likeCount)
@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className=" overflow-x-auto hero bg-[#ffffff]  text-[#252c2d] min-h-[80vh] border-double border-b-2 mt-3 ">
+      <div className=" overflow-x-auto hero    min-h-[80vh] border-double border-b-2 mt-3 ">
         <div className="hero-content gap-24 flex-col lg:flex-row-reverse">
           <img
             src="https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2023/12/Shakshuka-main-1.jpg"
@@ -50,17 +50,47 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3  items-stretch max-md:grid-cols-2 gap-3  my-5">
-        {filteredRecipes?.map((recipe, index) => {
-          return <HomeRecipes key={index} recipe={recipe}></HomeRecipes>;
-        })}
+      {/* Top Recipes */}
+      <div>
+        <div className="my-15 mt-25 space-y-5 flex flex-col items-center ">
+          {" "}
+          <h2 className="text-6xl text-center font-bold text-[#05d0f9]">
+            Discover All of Our Recipes
+          </h2>
+          <p className="max-w-[80%] text-center mx-auto">
+            Explore a world of delicious possibilities with our diverse
+            collection of recipes. From comforting classics to bold new flavors,
+            each dish is crafted to inspire your next meal.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-3  items-stretch max-md:grid-cols-2 gap-3  my-5">
+          {filteredRecipes?.map((recipe, index) => {
+            return <HomeRecipes key={index} recipe={recipe}></HomeRecipes>;
+          })}
+        </div>
+        <div className="flex justify-center my-5">
+          <Link to={"/all-recipes"}>
+            <button className="btn bg-[#A8F1FF] border-none text-black">
+              All Recipes
+            </button>
+          </Link>
+        </div>
       </div>
-      <div className="flex justify-center my-5">
-        <Link to={"/all-recipes"}>
-          <button className="btn bg-[#A8F1FF] border-none text-black">
-            All Recipes
-          </button>
-        </Link>
+      {/* Accordion Section */}
+      <div className="my-30">
+        <div className="my-15 mt-25 space-y-5 flex flex-col items-center">
+          {" "}
+          <h2 className="text-6xl text-center font-bold text-[#05d0f9]">
+            Frequently Asked Questions
+          </h2>
+          <p className="max-w-[80%] text-center mx-auto">
+            Explore a world of delicious possibilities with our diverse
+            collection of recipes. From comforting classics to bold new flavors,
+            each dish is crafted to inspire your next meal.
+          </p>
+        </div>
+        <Accordion />
         
       </div>
     </div>

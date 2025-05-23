@@ -1,4 +1,6 @@
 import React from "react";
+import { FaFacebook, FaReddit, FaTelegram } from "react-icons/fa";
+
 
 const Footer = () => {
   return (
@@ -21,6 +23,33 @@ const Footer = () => {
           <p className="text-sm text-[#000000]">
             Copyright © {new Date().getFullYear()} - All right reserved
           </p>
+
+          {/* Social Icons */}
+
+          <div className=" flex gap-5">
+            <a
+              href="https://www.reddit.com"
+              target="_blank"
+              className="border-2 border-white rounded-4xl"
+            >
+              <FaReddit size={25} fill={"#1ad7fd"} />
+            </a>
+            <a
+              href="https://facebook.com/"
+              target="_blank"
+              className="border-2 border-white rounded-4xl"
+            > 
+              <FaFacebook size={25} fill={"#1ad7fd"} />
+            </a>
+
+            <a
+              href="https://telegram.org/"
+              target="_blank"
+              className="border-2 border-white rounded-4xl"
+            >
+              <FaTelegram size={25} fill={"#1ad7fd"} />
+            </a>
+          </div>
         </aside>
       </footer>
     </div>

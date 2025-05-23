@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import HomeRecipes from "../Home/HomeRecipes";
+import NoItemsFound from "../NoItemsFound";
 
 const AllRecipes = () => {
   const [recipes, setRecipes] = useState([]);
-  const [selectedType, setSelectedType] = useState(["All"]);
+  const [selectedType, setSelectedType] = useState("All");
   const types = [
     "All",
     "Mediterranean",
@@ -17,6 +18,7 @@ const AllRecipes = () => {
     "Italian",
     "Korean",
     "Chinese",
+    "Others",
   ];
 
   useEffect(() => {
@@ -29,11 +31,11 @@ const AllRecipes = () => {
   const filteredRecipes =
     selectedType === "All"
       ? recipes
-      : recipes.filter((recipe) => (recipe.cuisineType = selectedType));
+      : recipes.filter((recipe) => recipe.cuisineType === selectedType);
 
   return (
     <div>
-      <div className="my-15 space-y-5">
+      <div className="my-15 space-y-5 flex flex-col items-center ">
         {" "}
         <h2 className="text-6xl text-center font-bold text-[#05d0f9]">
           Discover All of Our Recipes
@@ -45,14 +47,14 @@ const AllRecipes = () => {
         </p>
         <select
           value={selectedType}
-          className="mt-4 bg-[#2C3747] text-[#cce1d5] px-4 py-2 rounded-md border border-[#05C852]"
+          className="mt-4 bg-[#A8F1FF] text-black px-4 py-2 w-fit rounded-md border border-[#05d0f9]"
           onChange={(e) => setSelectedType(e.target.value)}
         >
-          {types.map((type, index) =>  {
-            <Option key={index} value={type}>
+          {types.map((type, index) => (
+            <option key={index} value={type}>
               {type}
-            </Option>
-          })}
+            </option>
+          ))}
         </select>
       </div>
 
@@ -61,6 +63,7 @@ const AllRecipes = () => {
           return <HomeRecipes key={index} recipe={recipe}></HomeRecipes>;
         })}
       </div>
+      <div>{filteredRecipes.length === 0 && <NoItemsFound />}</div>
     </div>
   );
 };

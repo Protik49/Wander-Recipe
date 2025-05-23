@@ -18,6 +18,38 @@ const NavBar = () => {
       });
   };
 
+  const toggle = (
+    <>
+      <label className="swap swap-rotate">
+        <input
+          type="checkbox"
+          onChange={(e) => {
+            const theme = e.target.checked ? "synthwave" : "light";
+            document.documentElement.setAttribute("data-theme", theme);
+          }}
+        />
+
+        {/* Sun icon */}
+        <svg
+          className="swap-on fill-current w-8 h-8 text-yellow-400"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <path d="M5 12a7 7 0 1114 0 7 7 0 01-14 0zm7-9a1 1 0 011 1v2a1 1 0 01-2 0V4a1 1 0 011-1zm0 16a1 1 0 011 1v2a1 1 0 01-2 0v-2a1 1 0 011-1zm9-7a1 1 0 010 2h-2a1 1 0 010-2h2zM6 12a1 1 0 010 2H4a1 1 0 010-2h2z" />
+        </svg>
+
+        {/* Moon icon */}
+        <svg
+          className="swap-off fill-current w-8 h-8 text-gray-500"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+        >
+          <path d="M21.64 13a1 1 0 00-1.05-.14 8.05 8.05 0 01-3.37.73A8.15 8.15 0 019.08 5.49a8.59 8.59 0 01.25-2A1 1 0 008 2.36 10.14 10.14 0 1022 14.05a1 1 0 00-.36-1.05z" />
+        </svg>
+      </label>
+    </>
+  );
+
   const links = (
     <>
       <li className="hover:bg-[#A8F1FF]">
@@ -100,6 +132,7 @@ const NavBar = () => {
           </li>
         </ul>
       </div>
+      {toggle}
     </>
   );
 
@@ -111,8 +144,10 @@ const NavBar = () => {
       <Link to={"/signup"} className="btn bg-[#A8F1FF] text-[#000000]">
         Sign Up
       </Link>
+      {toggle}
     </>
   );
+
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm w-full">
