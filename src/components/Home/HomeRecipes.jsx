@@ -10,18 +10,20 @@ const HomeRecipes = ({ recipe }) => {
   const [likes, setLikes] = useState(likeCount);
 
   const handleLike = () => {
-    fetch(`http://localhost:3000/recipes/${_id}/like`, {
-      method: "PUT",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ likedBy: user?.email }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount !== 0) {
-          setAlreadyLike(true);
-          setLikes(data.likes);
-        }
-      });
+    if (user) {
+      fetch(`http://localhost:3000/recipes/${_id}/like`, {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ likedBy: user?.email }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.modifiedCount !== 0) {
+            setAlreadyLike(true);
+            setLikes(data.likes);
+          }
+        });
+    }
   };
 
   return (

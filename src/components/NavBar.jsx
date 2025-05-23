@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router";
 import "../App.css";
 import { myContext } from "../contexts/Authprovider";
 import { handleSignOut } from "../firebase/firebaseFunks";
+import { Tooltip } from "react-tooltip";
 
 const NavBar = () => {
   const { user, setUser, loading } = useContext(myContext);
@@ -20,7 +21,11 @@ const NavBar = () => {
 
   const toggle = (
     <>
-      <label className="swap swap-rotate">
+      <label
+        className="swap swap-rotate "
+        data-tooltip-id="my-tooltip"
+        data-tooltip-content="Toggle Theme"
+      >
         <input
           type="checkbox"
           onChange={(e) => {
@@ -47,6 +52,7 @@ const NavBar = () => {
           <path d="M21.64 13a1 1 0 00-1.05-.14 8.05 8.05 0 01-3.37.73A8.15 8.15 0 019.08 5.49a8.59 8.59 0 01.25-2A1 1 0 008 2.36 10.14 10.14 0 1022 14.05a1 1 0 00-.36-1.05z" />
         </svg>
       </label>
+      <Tooltip id="my-tooltip" />
     </>
   );
 

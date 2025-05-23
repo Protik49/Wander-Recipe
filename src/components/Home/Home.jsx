@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import HomeRecipes from "./HomeRecipes";
 import Accordion from "./Accordion";
-
+import { Typewriter } from "react-simple-typewriter";
 
 const Home = () => {
   const [recipes, setRecipes] = useState([]);
@@ -91,6 +91,27 @@ const Home = () => {
           </p>
         </div>
         <Accordion />
+
+        {/* TypeWriter */}
+        <div className="text-center my-20">
+          <h1 className="text-5xl md:text-6xl font-extrabold leading-snug text-[#05d0f9] drop-shadow-md">
+            <Typewriter
+              words={[
+                "Discover.",
+                "Cook and Share.",
+                "Your Favorite Recipes.",
+                "All in One Place.",
+              ]}
+              loop={5}
+              cursor
+              cursorStyle="_"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1000}
+            />
+          </h1>
+        </div>
+
         
       </div>
     </div>

@@ -1,3 +1,4 @@
+import Tooltip from "daisyui/components/tooltip";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
@@ -278,7 +279,7 @@ const MyRecipesItems = ({ recipe, setDeleted }) => {
                     </label>
                   ))}
                 </div>
-              </div>                                                                                     
+              </div>
 
               <label className="lg:col-span-2">
                 Instructions
@@ -293,11 +294,14 @@ const MyRecipesItems = ({ recipe, setDeleted }) => {
 
               <div className="lg:col-span-2 flex justify-center">
                 <button
+                  data-tooltip-id="my-tooltip"
+                  data-tooltip-content="Hello world!"
                   type="submit"
                   className="btn bg-[#A8F1FF] text-black mt-4"
                 >
                   Update Recipe
                 </button>
+                <Tooltip id="my-tooltip" />
               </div>
             </form>
             <div className="modal-action">
