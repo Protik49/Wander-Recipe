@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router";
 import { AiOutlineLike } from "react-icons/ai";
+import { myContext } from "../../contexts/Authprovider";
 
 const HomeRecipes = ({ recipe }) => {
   const { _id, title, image, cuisineType, instructions, likeCount } = recipe;
+  const { user } = useContext(myContext);
+  const [alreadyLike, setAlreadyLike] = useState(false);
+  const [likes, setLikes] = useState(likeCount);
+
+  const handleLike = () => {
+    fetch(`http://localhost:3000/recipes/${_id}/like`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ likedBy: user?.email }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount !== 0) {
+          setAlreadyLike(true);
+          setLikes(data.likes);
+        }
+      });
+  };
+
   return (
     <div>
       <div className="card bg-base-100 w-full h-full shadow-sm">
@@ -26,9 +46,15 @@ const HomeRecipes = ({ recipe }) => {
                 </button>
               </Link>
             </div>
-            <div className="badge badge-outline">
+            <div
+              className="badge badge-outline cursor-pointer"
+              onClick={handleLike}
+            >
               {" "}
-              <AiOutlineLike /> {likeCount}
+              <AiOutlineLike
+                className={alreadyLike ? "text-[#A8F1FF]" : null}
+              />{" "}
+              {likes}
             </div>
           </div>
         </div>

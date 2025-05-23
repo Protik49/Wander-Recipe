@@ -11,6 +11,10 @@ const Mainlayout = () => {
   const [loading, setLoading] = useState(true);
   const contextElements = { user, setUser, loading, setLoading };
 
+   
+  
+
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -23,6 +27,9 @@ const Mainlayout = () => {
 
     return () => unsubscribe();
   }, []);
+
+
+
   return (
     <div className="font-mono">
       <myContext.Provider value={contextElements}>

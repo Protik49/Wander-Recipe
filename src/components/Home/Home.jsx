@@ -13,7 +13,7 @@ const Home = () => {
       .then(data => {
         const filteredRecipes = data
           .sort((a, b) => b.likeCount - a.likeCount)
-          .slice(0, 5);
+          .slice(0, 6);
         
         setRecipes(filteredRecipes)
     })
@@ -21,7 +21,7 @@ const Home = () => {
 
   const filteredRecipes = recipes
     .sort((a, b) => b.likeCount - a.likeCount)
-    .slice(0, 5);
+    .slice(0, 6);
 
   return (
     <div>
@@ -50,7 +50,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 justify-items-center max-md:grid-cols-2 gap-3  my-5">
+      <div className="grid grid-cols-3  items-stretch max-md:grid-cols-2 gap-3  my-5">
         {filteredRecipes?.map((recipe, index) => {
           return <HomeRecipes key={index} recipe={recipe}></HomeRecipes>;
         })}

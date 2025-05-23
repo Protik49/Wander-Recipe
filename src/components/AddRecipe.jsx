@@ -20,6 +20,7 @@ const AddRecipe = () => {
     const ingredients = formData.getAll("ingredients");
     const likeCount = 0;
     const userEmail = user?.email;
+    const likedBy = []
 
     const recipe = {
       title,
@@ -31,6 +32,7 @@ const AddRecipe = () => {
       ingredients,
       instructions,
       userEmail,
+      likedBy
     };
 
     fetch("http://localhost:3000/recipes", {

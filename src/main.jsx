@@ -12,11 +12,13 @@ import AllRecipes from "./components/AllRecipes/AllRecipes.jsx";
 import RecipeDetails from "./components/RecipeDetails.jsx";
 import AddRecipe from "./components/AddRecipe.jsx";
 import MyRecipes from "./components/MyRecipes/MyRecipes.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Mainlayout />,
+    errorElement: <ErrorPage/>,
     children: [
       {
         index: true,

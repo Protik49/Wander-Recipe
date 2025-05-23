@@ -157,7 +157,7 @@ const MyRecipesItems = ({ recipe, setDeleted }) => {
           <p className="text-justify">{formData.instructions}</p>
         </div>
 
-        <div className="flex justify-end gap-3 pt-4">
+        <div className="flex justify-end  gap-3 pt-4">
           <button
             onClick={() => onUpdate(recipe._id)}
             className="px-4 py-1 rounded-lg bg-[#A8F1FF] text-black cursor-pointer hover:bg-[#91e5f5] transition"
@@ -278,7 +278,7 @@ const MyRecipesItems = ({ recipe, setDeleted }) => {
                     </label>
                   ))}
                 </div>
-              </div>
+              </div>                                                                                     
 
               <label className="lg:col-span-2">
                 Instructions
