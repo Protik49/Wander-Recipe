@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import MyRecipesItems from './MyRecipesItems'
+import MyRecipesItems from "./MyRecipesItems";
 
 import { myContext } from "../../contexts/Authprovider";
 import NoItemsFound from "../NoItemsFound";
@@ -9,24 +9,21 @@ import Loading from "../../PrivateRoot/Loading";
 const MyRecipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [deleted, setDeleted] = useState(null)
+  const [deleted, setDeleted] = useState(null);
 
   const { user } = useContext(myContext);
 
-  useEffect(() => { 
-    
-    
-    fetch(`http://localhost:3000/recipes/${user?.email}`)
+  useEffect(() => {
+    fetch(`https://wander-recipe-server.vercel.app/recipes/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setRecipes(data);
         setLoading(false);
-       
       })
       .catch((error) => console.error(error));
 
-      setDeleted(false)
-  }, [user,deleted]);
+    setDeleted(false);
+  }, [user, deleted]);
   return (
     <div>
       <div>

@@ -22,7 +22,7 @@ const AllRecipes = () => {
   ];
 
   useEffect(() => {
-    fetch("http://localhost:3000/recipes")
+    fetch("https://wander-recipe-server.vercel.app/recipes")
       .then((res) => res.json())
       .then((data) => setRecipes(data))
       .catch((error) => console.error(error));

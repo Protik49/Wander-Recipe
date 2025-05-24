@@ -20,7 +20,7 @@ const AddRecipe = () => {
     const ingredients = formData.getAll("ingredients");
     const likeCount = 0;
     const userEmail = user?.email;
-    const likedBy = []
+    const likedBy = [];
 
     const recipe = {
       title,
@@ -32,10 +32,10 @@ const AddRecipe = () => {
       ingredients,
       instructions,
       userEmail,
-      likedBy
+      likedBy,
     };
 
-    fetch("http://localhost:3000/recipes", {
+    fetch("https://wander-recipe-server.vercel.app/recipes", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(recipe),
@@ -142,7 +142,6 @@ const AddRecipe = () => {
                 ].map((cat, index) => (
                   <label key={index} className="flex items-center gap-2">
                     <input
-                      
                       type="checkbox"
                       name="categories"
                       value={cat}
@@ -176,7 +175,6 @@ const AddRecipe = () => {
                 ].map((ing, index) => (
                   <label key={index} className="flex items-center gap-2">
                     <input
-                      
                       type="checkbox"
                       name="ingredients"
                       value={ing}

@@ -12,7 +12,7 @@ const HomeRecipes = ({ recipe }) => {
 
   const handleLike = () => {
     if (user) {
-      fetch(`http://localhost:3000/recipes/${_id}/like`, {
+      fetch(`https://wander-recipe-server.vercel.app/recipes/${_id}/like`, {
         method: "PUT",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ likedBy: user?.email }),

@@ -18,12 +18,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Mainlayout />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
         Component: Home,
-        loader: () => fetch("http://localhost:3000/recipes"),
+        loader: () => fetch("https://wander-recipe-server.vercel.app/recipes"),
       },
       {
         path: "all-recipes",
@@ -41,7 +41,9 @@ const router = createBrowserRouter([
           </PrivateRoot>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/all-recipes/${params.id}`),
+          fetch(
+            `https://wander-recipe-server.vercel.app/all-recipes/${params.id}`
+          ),
       },
       {
         path: "/add-recipes",

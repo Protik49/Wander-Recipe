@@ -8,7 +8,7 @@ const Home = () => {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/recipes")
+    fetch("https://wander-recipe-server.vercel.app/recipes")
       .then((res) => res.json())
       .then((data) => {
         const filteredRecipes = data
@@ -111,8 +111,6 @@ const Home = () => {
             />
           </h1>
         </div>
-
-
       </div>
     </div>
   );

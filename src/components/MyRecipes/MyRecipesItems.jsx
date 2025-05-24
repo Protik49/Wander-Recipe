@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
@@ -14,8 +13,6 @@ const MyRecipesItems = ({ recipe, setDeleted }) => {
     instructions: recipe.instructions,
   });
 
-  
-
   const onDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -27,7 +24,7 @@ const MyRecipesItems = ({ recipe, setDeleted }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/recipes/${id}`, {
+        fetch(`https://wander-recipe-server.vercel.app/recipes/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -60,7 +57,7 @@ const MyRecipesItems = ({ recipe, setDeleted }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/recipes/${recipe._id}`, {
+    fetch(`https://wander-recipe-server.vercel.app/recipes/${recipe._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -77,13 +74,10 @@ const MyRecipesItems = ({ recipe, setDeleted }) => {
           timer: 1500,
         });
 
-        
-
         setDeleted((prev) => !prev);
 
         document.getElementById(`modal-${recipe._id}`).close();
       });
-    
   };
 
   const categoriesList = [
@@ -294,13 +288,11 @@ const MyRecipesItems = ({ recipe, setDeleted }) => {
 
               <div className="lg:col-span-2 flex justify-center">
                 <button
-                 
                   type="submit"
                   className="btn bg-[#A8F1FF] text-black mt-4"
                 >
                   Update Recipe
                 </button>
-                
               </div>
             </form>
             <div className="modal-action">
