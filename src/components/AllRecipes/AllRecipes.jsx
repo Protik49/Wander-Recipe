@@ -6,6 +6,7 @@ import NoItemsFound from "../NoItemsFound";
 const AllRecipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [selectedType, setSelectedType] = useState("All");
+  const [loading,setLoading] = useState(true)
   const types = [
     "All",
     "Mediterranean",
@@ -24,7 +25,10 @@ const AllRecipes = () => {
   useEffect(() => {
     fetch("https://wander-recipe-server.vercel.app/recipes")
       .then((res) => res.json())
-      .then((data) => setRecipes(data))
+      .then((data) => {
+        setRecipes(data);
+        setLoading(false);
+      })
       .catch((error) => console.error(error));
   }, []);
 
@@ -63,7 +67,7 @@ const AllRecipes = () => {
           return <HomeRecipes key={index} recipe={recipe}></HomeRecipes>;
         })}
       </div>
-      <div>{filteredRecipes.length === 0 && <NoItemsFound />}</div>
+      <div>{!loading && filteredRecipes.length === 0 && <NoItemsFound />}</div>
     </div>
   );
 };
